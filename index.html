@@ -95,13 +95,41 @@
       let firstNum = document.querySelector('#first-num').value;
       let secondNum = document.querySelector('#second-num').value;
       let operator = document.querySelector('#operator').value;
+     // output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+    
+
+    class numError extends Error {
+      constructor(message) {
+        super(message);
+        this.name = "This input is not valid!";
+      }
+    }
+
+    try {
+      console.log("Try test")
       output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+    } catch(err) {
+      alert("There is an error!");
+      if(!firstNum) {
+        throw new ReferenceError('reference error!!');
+      }
+      if(!secondNum) {
+        throw new numError('please enter a valid input');
+      }
+    } finally {
+      console.log('Here is your final output: ${output.innerHTML}');
+    }
+
     });
+
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
 
     // Start your code here
     // You may move this JS to another file if you wish
+
+
+
   </script>
 </body>
 
